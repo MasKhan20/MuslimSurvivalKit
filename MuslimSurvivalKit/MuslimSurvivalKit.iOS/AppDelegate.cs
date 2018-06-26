@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
 
 namespace MuslimSurvivalKit.iOS
@@ -22,7 +23,13 @@ namespace MuslimSurvivalKit.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.Init();
+
+            ImageCircleRenderer.Init();
+            string dbPath = Renderers.FileAccessHelper.GetLocalFilePath(App.DatabaseFile);
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

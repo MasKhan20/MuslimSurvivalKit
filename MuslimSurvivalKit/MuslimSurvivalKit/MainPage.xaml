@@ -4,11 +4,12 @@
              xmlns:local="clr-namespace:MuslimSurvivalKit"
              x:Class="MuslimSurvivalKit.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+        <Button Text="Read" Clicked="ReadButton_Clicked"/>
+        <Button Text="Listen" Clicked="ListenButton_Clicked"/>
+        
     </StackLayout>
 
 </ContentPage>

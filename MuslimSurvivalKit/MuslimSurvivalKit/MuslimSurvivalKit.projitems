@@ -16,8 +16,64 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SearchTextChangedBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\IntToIdConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\SecondToTimeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\IFileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\MuslimKitDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AyahArOriginal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AyahEnSahih.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Reciter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Reciters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Surah.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AudioDownloadViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranSurahAudioViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranSurahViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SurahListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Download\AudioDownloadPage.xaml.cs">
+      <DependentUpon>AudioDownloadPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Listener\QuranSurahAudioPage.xaml.cs">
+      <DependentUpon>QuranSurahAudioPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Reader\QuranReaderMasterPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Reader\QuranSurahPage.xaml.cs">
+      <DependentUpon>QuranSurahPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Quran\SurahListPage.xaml.cs">
+      <DependentUpon>SurahListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Quran\SurahListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Quran\Reader\QuranSurahPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Quran\Listener\QuranSurahAudioPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Download\AudioDownloadPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

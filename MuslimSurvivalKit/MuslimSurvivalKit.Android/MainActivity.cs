@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace MuslimSurvivalKit.Droid
 {
@@ -19,7 +20,13 @@ namespace MuslimSurvivalKit.Droid
 
             base.OnCreate(bundle);
 
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            ImageCircleRenderer.Init();
+            string dbPath = Renderers.FileAccessHelper.GetLocalFilePath(App.DatabaseFile);
+
             LoadApplication(new App());
         }
     }

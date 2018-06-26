@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageCircle.Forms.Plugin.UWP;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,12 +53,17 @@ namespace MuslimSurvivalKit.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                Rg.Plugins.Popup.Popup.Init();
+
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
+
+                ImageCircleRenderer.Init();
+                string dbPath = Renderers.FileAccessHelper.GetLocalFilePath(MuslimSurvivalKit.App.DatabaseFile);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
