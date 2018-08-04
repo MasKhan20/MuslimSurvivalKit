@@ -26,14 +26,9 @@ namespace MuslimSurvivalKit.View.Quran
 
             if (isRoot)
             {
-                var ad = new AdMobBannerView(
-#if DEBUG
-                    "ca-app-pub-3940256099942544/6300978111"
-#else
-                    
-#endif
-                    );
-
+                var ad = new AdMobBannerView("ca-app-pub-4025243320631804/8161981113");
+                    //"ca-app-pub-3940256099942544/6300978111"
+                
                 grid.Children.Add(ad, 0, 1); 
             }
 
