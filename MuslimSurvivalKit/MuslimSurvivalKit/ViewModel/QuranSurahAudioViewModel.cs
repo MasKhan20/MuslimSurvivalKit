@@ -1,10 +1,10 @@
 ﻿using MuslimSurvivalKit.Data;
 using MuslimSurvivalKit.Model;
 using MuslimSurvivalKit.View.Download;
-using Plugin.MediaManager.Abstractions;
-using Plugin.MediaManager.Abstractions.Enums;
-using Plugin.MediaManager.Abstractions.EventArguments;
-using Plugin.MediaManager.Abstractions.Implementations;
+//using Plugin.MediaManager.Abstractions;
+//using Plugin.MediaManager.Abstractions.Enums;
+//using Plugin.MediaManager.Abstractions.EventArguments;
+//using Plugin.MediaManager.Abstractions.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +22,10 @@ namespace MuslimSurvivalKit.ViewModel
         #region Binding Commands
         public ICommand ExitCommand => new Command(Exit_Command);
         public ICommand DownloadCommand => new Command(Download_Command);
-        public ICommand PlayPauseCommand => new Command(PlayPause_Command);
+        //public ICommand PlayPauseCommand => new Command(PlayPause_Command);
+        //
+        //public ICommand PreviousCommand => new Command(Previous_Command);
+        //public ICommand NextCommand => new Command(Next_Command);
         #endregion
 
         #region Binding Properties
@@ -38,8 +41,8 @@ namespace MuslimSurvivalKit.ViewModel
                 _selectedSurah = value;
                 RaisePropertyChanged(nameof(SelectedSurah));
 
-                if (SelectedSurah != null)
-                    HandleSurahChanged();
+                //if (SelectedSurah != null)
+                //    HandleSurahChanged();
             }
         }
 
@@ -85,7 +88,7 @@ namespace MuslimSurvivalKit.ViewModel
                 _playedValue = value;
                 RaisePropertyChanged(nameof(PlayedValue));
 
-                UpdateDurationFromSlider();
+                //UpdateDurationFromSlider();
             }
         }
 
@@ -163,8 +166,8 @@ namespace MuslimSurvivalKit.ViewModel
         private readonly string nextIcon = "ic_skip_next_white_24dp";
         private readonly string settingIcon = "ic_settings_white_24dp";
 
-        IMediaManager _manager = Plugin.MediaManager.CrossMediaManager.Current;
-        IPlaybackController _player = Plugin.MediaManager.CrossMediaManager.Current.PlaybackController;
+        //IMediaManager _manager = Plugin.MediaManager.CrossMediaManager.Current;
+        //IPlaybackController _player = Plugin.MediaManager.CrossMediaManager.Current.PlaybackController;
         bool _isPlaying;
 
         INavigation Navigation;
@@ -178,14 +181,14 @@ namespace MuslimSurvivalKit.ViewModel
             NextIcon = nextIcon;
             SettingIcon = settingIcon;
 
-            _manager.BufferingChanged += Manager_BufferingChanged;
-            _manager.PlayingChanged += Manager_PlayingChanged;
-            _manager.StatusChanged += Manager_StatusChanged;
+            //_manager.BufferingChanged += Manager_BufferingChanged;
+            //_manager.PlayingChanged += Manager_PlayingChanged;
+            //_manager.StatusChanged += Manager_StatusChanged;
 
             GetReciters();
             LoadSurahs(Model.Reciters.MisharyAlAfasy, surahId);
 
-            LoadMediaQueue();
+            //LoadMediaQueue();
         }
 
         private void DisplayAlert(string title, string message)
@@ -224,7 +227,8 @@ namespace MuslimSurvivalKit.ViewModel
                 }
                 catch (Exception exc)
                 {
-                    DisplayAlert(exc.Message, exc.ToString());
+                    Debug.WriteLine(exc.Message);
+                    //DisplayAlert(exc.Message, exc.ToString());
                 }
 
                 surah.File = file;
@@ -240,151 +244,185 @@ namespace MuslimSurvivalKit.ViewModel
             //}
         }
 
-        private void LoadMediaQueue()
-        {
-            if (_manager.MediaQueue.Count < Surahs.Count)
-            {
-                _manager.MediaQueue.CollectionChanged -= MediaQueue_CollectionChanged;
-
-                _manager.MediaQueue.Clear();
-                foreach (var surah in Surahs)
-                {
-
-                    IMediaFile audio = new MediaFile()
-                    {
-                        Url = surah.File,
-                        Type = MediaFileType.Audio,
-                        Availability = ResourceAvailability.Local
-                    };
-
-                    audio.Metadata.Duration = (int)surah.Duration;
-
-                    _manager.MediaQueue.Add(audio);
-                }
-
-                _manager.MediaQueue.CollectionChanged += MediaQueue_CollectionChanged; 
-            }
-        }
-
-        private void HandleSurahChanged()
-        {
-            PlayerLabel = $"Now Playing: {SelectedSurah.SurahId.ToString().PadLeft(3, '0')} Surah {SelectedSurah.ArabicName} - {SelectedSurah.EnglishName}";
-        }
-
-        private void UpdateDurationFromSlider()
-        {
-            PlayedDuration = PlayedValue;
-
-            _manager.AudioPlayer.Seek(TimeSpan.FromSeconds(PlayedValue));
-        }
-
-        //private void PlaySurah(Surah surah)
+        //private void LoadMediaQueue()
         //{
-        //    
+        //    if (_manager.MediaQueue.Count < Surahs.Count)
+        //    {
+        //        _manager.MediaQueue.CollectionChanged -= MediaQueue_CollectionChanged;
+        //
+        //        _manager.MediaQueue.Clear();
+        //        foreach (var surah in Surahs)
+        //        {
+        //
+        //            IMediaFile audio = new MediaFile()
+        //            {
+        //                Url = surah.File,
+        //                Type = MediaFileType.Audio,
+        //                Availability = ResourceAvailability.Local,
+        //            };
+        //
+        //            audio.Metadata.Duration = (int)surah.Duration;
+        //
+        //            _manager.MediaQueue.Add(audio);
+        //        }
+        //
+        //        _manager.MediaQueue.CollectionChanged += MediaQueue_CollectionChanged; 
+        //    }
         //}
-
-        private void Manager_BufferingChanged(object sender, BufferingChangedEventArgs e)
-        {
-            Debug.WriteLine($"MediaManager BufferingChanged");
-        }
-
-        private void Manager_PlayingChanged(object sender, PlayingChangedEventArgs e)
-        {
-            Debug.WriteLine($"MediaPlayer PlayingChanged");
-
-            try
-            {
-                var time = _manager.MediaQueue[_manager.MediaQueue.Index].Metadata.Duration;
-                Debug.WriteLine($"Progress: {e.Progress}");
-
-                TotalDuration = time;
-                if (e.Progress != 0)
-                {
-                    PlayedValue = e.Progress;
-                }
-                    //_manager.Position.TotalSeconds > 0 ? Convert.ToInt32(_manager.Position.TotalSeconds) : 0;
-            }
-            catch (Exception exc)
-            {
-                DisplayAlert(exc.Message, exc.ToString());
-            }
-        }
-
-        private void MediaQueue_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (_manager.MediaQueue.Count > Surahs.Count)
-            {
-                LoadMediaQueue();
-            }
-        }
-
-        private void Manager_StatusChanged(object sender, StatusChangedEventArgs e)
-        {
-            Debug.WriteLine($"MediaPlayer Status = {e.Status}");
-        }
-
-        private void PlayPause_Command()
-        {
-            //Exception
-            LoadMediaQueue();
-
-            Debug.WriteLine("Loaded MediaQueue, Contents: ");
-
-            foreach (var item in _manager.MediaQueue)
-            {
-                Debug.WriteLine($"Queue Item: {item.Url}");
-            }
-
-            if (SelectedSurah == null)
-            {
-                DisplayAlert("No surah selected", "Please select a surah to begin playing");
-                return;
-            }
-
-            if (!_isPlaying)
-            {
-                _manager.MediaQueue.SetIndexAsCurrent(Surahs.IndexOf(SelectedSurah));
-
-                _player.Play();
-
-                PlayPauseIcon = pauseIcon;
-                _isPlaying = true;
-            }
-            else
-            {
-                _player.Pause();
-
-                PlayPauseIcon = playIcon;
-                _isPlaying = false;
-            }
-
-            //switch (_manager.Status)
-            //{
-            //    case MediaPlayerStatus.Stopped:
-            //        PlaySurah(SelectedSurah);
-            //        break;
-            //    case MediaPlayerStatus.Paused:
-            //        PlaySurah(SelectedSurah);
-            //        break;
-            //    case MediaPlayerStatus.Playing:
-            //        _manager.Pause();
-            //        break;
-            //    case MediaPlayerStatus.Loading:
-            //        break;
-            //    case MediaPlayerStatus.Buffering:
-            //        break;
-            //    case MediaPlayerStatus.Failed:
-            //        break;
-            //    default:
-            //        break;
-            //}
-        }
-
+        //
+        //private void HandleSurahChanged()
+        //{
+        //    if (_manager.MediaQueue.Count < Surahs.Count)
+        //    {
+        //        LoadMediaQueue();
+        //    }
+        //
+        //    PlayerLabel = $"Now Playing: {SelectedSurah.SurahId.ToString().PadLeft(3, '0')} Surah {SelectedSurah.ArabicName} - {SelectedSurah.EnglishName}";
+        //
+        //    try
+        //    {
+        //        TotalDuration = _manager.MediaQueue[Surahs.IndexOf(SelectedSurah)].Metadata.Duration; 
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        DisplayAlert(exc.Message, exc.ToString());
+        //    }
+        //}
+        //
+        //private void UpdateDurationFromSlider()
+        //{
+        //    PlayedDuration = PlayedValue;
+        //
+        //    _manager.AudioPlayer.Seek(TimeSpan.FromSeconds(PlayedValue));
+        //}
+        //
+        ////private void PlaySurah(Surah surah)
+        ////{
+        ////    
+        ////}
+        //
+        //private void Manager_BufferingChanged(object sender, BufferingChangedEventArgs e)
+        //{
+        //    Debug.WriteLine($"MediaManager BufferingChanged");
+        //}
+        //
+        //private void Manager_PlayingChanged(object sender, PlayingChangedEventArgs e)
+        //{
+        //    Debug.WriteLine($"MediaPlayer PlayingChanged");
+        //
+        //    try
+        //    {
+        //        var time = _manager.MediaQueue[_manager.MediaQueue.Index].Metadata.Duration;
+        //        Debug.WriteLine($"Progress: {e.Progress}");
+        //
+        //        TotalDuration = time;//e.Duration;
+        //        if (e.Progress != 0)
+        //        {
+        //            PlayedValue = e.Progress;
+        //        }
+        //            //_manager.Position.TotalSeconds > 0 ? Convert.ToInt32(_manager.Position.TotalSeconds) : 0;
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        DisplayAlert(exc.Message, exc.ToString());
+        //    }
+        //}
+        //
+        //private void MediaQueue_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    if (_manager.MediaQueue.Count > Surahs.Count)
+        //    {
+        //        LoadMediaQueue();
+        //    }
+        //}
+        //
+        //private void Manager_StatusChanged(object sender, StatusChangedEventArgs e)
+        //{
+        //    Debug.WriteLine($"MediaPlayer Status = {e.Status}");
+        //}
+        //
+        //private void PlayPause_Command()
+        //{
+        //    //Exception
+        //    LoadMediaQueue();
+        //
+        //    //Debug.WriteLine("Loaded MediaQueue, Contents: ");
+        //    //
+        //    //foreach (var item in _manager.MediaQueue)
+        //    //{
+        //    //    Debug.WriteLine($"Queue Item: {item.Url}");
+        //    //} 
+        //
+        //    if (SelectedSurah == null)
+        //    {
+        //        DisplayAlert("No surah selected", "Please select a surah to begin playing");
+        //        return;
+        //    }
+        //
+        //    if (!_isPlaying)
+        //    {
+        //        _manager.MediaQueue.SetIndexAsCurrent(Surahs.IndexOf(SelectedSurah));
+        //
+        //        _player.Play();
+        //
+        //        PlayPauseIcon = pauseIcon;
+        //        _isPlaying = true;
+        //    }
+        //    else
+        //    {
+        //        _player.Pause();
+        //
+        //        PlayPauseIcon = playIcon;
+        //        _isPlaying = false;
+        //    }
+        //
+        //    //switch (_manager.Status)
+        //    //{
+        //    //    case MediaPlayerStatus.Stopped:
+        //    //        PlaySurah(SelectedSurah);
+        //    //        break;
+        //    //    case MediaPlayerStatus.Paused:
+        //    //        PlaySurah(SelectedSurah);
+        //    //        break;
+        //    //    case MediaPlayerStatus.Playing:
+        //    //        _manager.Pause();
+        //    //        break;
+        //    //    case MediaPlayerStatus.Loading:
+        //    //        break;
+        //    //    case MediaPlayerStatus.Buffering:
+        //    //        break;
+        //    //    case MediaPlayerStatus.Failed:
+        //    //        break;
+        //    //    default:
+        //    //        break;
+        //    //}
+        //}
+        //
+        //private async void Previous_Command()
+        //{
+        //    if (_manager.MediaQueue.Index > 0)
+        //    {
+        //        _manager.MediaQueue.SetIndexAsCurrent(_manager.MediaQueue.Index - 1);
+        //        SelectedSurah = Surahs[_manager.MediaQueue.Index - 1];
+        //        await _player.PlayPreviousOrSeekToStart();
+        //    }
+        //}
+        //
+        //private async void Next_Command()
+        //{
+        //    if (_manager.MediaQueue.Index < _manager.MediaQueue.Count - 1)
+        //    {
+        //        _manager.MediaQueue.SetIndexAsCurrent(_manager.MediaQueue.Index + 1);
+        //        SelectedSurah = Surahs[_manager.MediaQueue.Index + 1];
+        //        await _player.PlayNext();
+        //    }
+        //}
+        
         private void Exit_Command()
         {
             Navigation.PopModalAsync();
         }
-
+        
         private void Download_Command()
         {
             Navigation.PushAsync(new AudioDownloadPage());

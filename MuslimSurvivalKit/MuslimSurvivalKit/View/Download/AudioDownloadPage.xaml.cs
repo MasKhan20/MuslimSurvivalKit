@@ -20,6 +20,12 @@ namespace MuslimSurvivalKit.View.Download
             var viewmodel = new AudioDownloadViewModel(Navigation);
 
             BindingContext = viewmodel;
+
+            MessagingCenter.Subscribe<AudioDownloadViewModel, (string title, string message)>(viewmodel, "Alert",
+                (s, e) =>
+                {
+                    DisplayAlert(e.title, e.message, "OK");
+                });
         }
     }
 }

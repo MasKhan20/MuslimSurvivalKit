@@ -1,4 +1,6 @@
-﻿using MuslimSurvivalKit.ViewModel;
+﻿using MuslimSurvivalKit.Model;
+using MuslimSurvivalKit.View.Ads;
+using MuslimSurvivalKit.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +15,31 @@ namespace MuslimSurvivalKit.View.Quran
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SurahListPage : ContentPage
     {
+        private bool isPushing = false;
+        private bool _isRoot;
         public ListView SurahList;
-
-        public SurahListPage()
+        public SurahListPage(bool isRoot = false)
         {
+            _isRoot = isRoot;
+
             InitializeComponent();
 
-            Title = "Al Quran - Surahs";
+            if (isRoot)
+            {
+                var ad = new AdMobBannerView(
+#if DEBUG
+                    "ca-app-pub-3940256099942544/6300978111"
+#else
+                    
+#endif
+                    );
 
-            var viewmodel = new SurahListViewModel();
+                grid.Children.Add(ad, 0, 1); 
+            }
+
+            //Title = "Al Quran - Surahs";
+
+            var viewmodel = new SurahListViewModel(); //(Navigation, isRoot);
 
             BindingContext = viewmodel;
 
@@ -32,6 +50,33 @@ namespace MuslimSurvivalKit.View.Quran
                 {
                     DisplayAlert(args.title, args.message, "OK");
                 });
+        }
+
+        private void SurahList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+
+            lock (this)
+            {
+                if (isPushing == true)
+                    return;
+                else
+                    isPushing = false;
+            }
+
+            var surah = e.SelectedItem as Surah;
+
+            if (_isRoot)
+            {
+                if (Data.Settings.ViewBySurah)
+                    Navigation.PushModalAsync(new NavigationPage(new Reader.SurahView.QuranReaderMasterPage(surah.SurahId)));
+                else
+                    Navigation.PushAsync(new Reader.PageView.QuranPages(surah.PageNumber));
+            }
+
+            isPushing = false;
+            surahList.SelectedItem = null;
         }
     }
 }

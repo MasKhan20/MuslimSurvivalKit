@@ -2,85 +2,86 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:behaviors="clr-namespace:MuslimSurvivalKit.Behaviors"
+             xmlns:ads="clr-namespace:MuslimSurvivalKit.View.Ads"
              x:Class="MuslimSurvivalKit.View.Quran.SurahListPage">
     <ContentPage.ToolbarItems>
         
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="grid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <SearchBar 
-                x:Name="searchBar" 
-                Placeholder="Search Surah Number or Name" 
-                SearchCommand="{Binding SearchCommand}" 
-                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
-                <SearchBar.Behaviors>
-                    <behaviors:SearchTextChangedBehavior/>
-                </SearchBar.Behaviors>
-            </SearchBar>
-            <Grid
-                Grid.Row="1">
-                <Label 
-                    Text="{Binding SearchMessage}" 
-                    HorizontalTextAlignment="Center" 
-                    FontAttributes="Bold"/>
-                <ListView 
-                    x:Name="surahList" 
-                    ItemsSource="{Binding Surahs}" 
-                    SelectedItem="{Binding SelectedSurah, Mode=TwoWay}" 
-                    HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid
-                                    Margin="15,5,5,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="50"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label 
-                                        Grid.Column="0" 
-                                        Text="{Binding SurahId}" 
-                                        HorizontalOptions="Center" 
-                                        VerticalOptions="Center" 
-                                        TextColor="{StaticResource PrimaryText}" 
-                                        FontSize="Large"/>
-                                    <StackLayout
-                                        Grid.Column="1"
-                                        Spacing="0"
-                                        HorizontalOptions="StartAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <SearchBar 
+                    x:Name="searchBar" 
+                    Placeholder="Search Surah Number or Name" 
+                    SearchCommand="{Binding SearchCommand}" 
+                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}">
+                    <SearchBar.Behaviors>
+                        <behaviors:SearchTextChangedBehavior/>
+                    </SearchBar.Behaviors>
+                </SearchBar>
+                <Grid
+                    Grid.Row="1">
+                    <Label 
+                        Text="{Binding SearchMessage}" 
+                        HorizontalTextAlignment="Center" 
+                        FontAttributes="Bold"/>
+                    <ListView 
+                        x:Name="surahList" 
+                        ItemsSource="{Binding Surahs}" 
+                        ItemSelected="SurahList_ItemSelected"
+                        HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid
+                                        Margin="15,5,5,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
                                         <Label 
-                                            Grid.Row="0" 
-                                            Grid.Column="1"
-                                            Text="{Binding ArabicName}" 
-                                            HorizontalOptions="StartAndExpand" 
-                                            HorizontalTextAlignment="Start" 
+                                            Grid.Column="0" 
+                                            Text="{Binding SurahId}" 
+                                            HorizontalOptions="Center" 
+                                            VerticalOptions="Center" 
                                             TextColor="{StaticResource PrimaryText}" 
-                                            FontSize="Medium"/>
-                                        <Label 
-                                            Grid.Row="1" 
+                                            FontSize="Large"/>
+                                        <StackLayout
                                             Grid.Column="1"
-                                            Text="{Binding EnArName}" 
-                                            TextColor="{StaticResource SecondaryText}"
-                                            HorizontalTextAlignment="Start" 
-                                            FontSize="Small"/>
-                                    </StackLayout>
-                                    <Label 
-                                        Grid.Column="2" 
-                                        Text="{Binding PageNumber}" 
-                                        TextColor="{StaticResource SecondaryText}"
-                                        HorizontalTextAlignment="End" 
-                                        FontSize="Medium"/>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                            Spacing="0"
+                                            HorizontalOptions="StartAndExpand">
+                                            <Label 
+                                                Grid.Row="0" 
+                                                Grid.Column="1"
+                                                Text="{Binding ArabicName}" 
+                                                HorizontalOptions="StartAndExpand" 
+                                                HorizontalTextAlignment="Start" 
+                                                TextColor="{StaticResource PrimaryText}" 
+                                                FontSize="Medium"/>
+                                            <Label 
+                                                Grid.Row="1" 
+                                                Grid.Column="1"
+                                                Text="{Binding EnArName}" 
+                                                TextColor="{StaticResource SecondaryText}"
+                                                HorizontalTextAlignment="Start" 
+                                                FontSize="Small"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Grid>
+            <!--<ads:AdMobBannerView Grid.Row="1" AdUnitId="ca-app-pub-3940256099942544/6300978111"/>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

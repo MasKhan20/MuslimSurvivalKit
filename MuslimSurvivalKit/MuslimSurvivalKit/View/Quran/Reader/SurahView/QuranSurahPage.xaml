@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MuslimSurvivalKit.View.Quran.Reader.SurahView.QuranSurahPage"
+             x:Name="surahPage">
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Icon="{Binding ToggleIcon}" Order="Primary" Command="{Binding ShowHidePlayerCommand}"/>-->
+        <ToolbarItem Icon="ic_settings_white_36dp.png" Order="Primary" Command="{Binding SettingsCommand}"/>
+        <ToolbarItem Text="Jump to ayah number" Clicked="JumpToAyah_Clicked" Order="Secondary"/>
+        <ToolbarItem Text="Exit" Order="Secondary" Command="{Binding ExitCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView 
+                x:Name="_listView" 
+                ItemsSource="{Binding Surah}" 
+                SelectedItem="{Binding SelectedAyah, Mode=TwoWay}" 
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Padding="10">
+                                <Label 
+                                    Text="{Binding ArabicText}" 
+                                    TextColor="{StaticResource PrimaryText}" 
+                                    FontFamily="{StaticResource ArabicFont}" 
+                                    FontSize="{Binding ArabicFontSize}" 
+                                    HorizontalOptions="EndAndExpand" 
+                                    HorizontalTextAlignment="End"
+                                    IsVisible="{Binding ShowArabic}"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image 
+                                        Source="{Binding BookmarkedIcon}" 
+                                        IsVisible="{Binding ShowBookmarks}" 
+                                        HeightRequest="24">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                                NumberOfTapsRequired="1" 
+                                                Command="{Binding BindingContext.ToggleBookmarkedCommand, Source={x:Reference surahPage}}" 
+                                                CommandParameter="{Binding .}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label 
+                                        Text="{Binding SurahLocation}" 
+                                        TextColor="{StaticResource PrimaryText}" 
+                                        FontSize="Medium" 
+                                        HorizontalTextAlignment="Start"
+                                        IsVisible="{Binding ShowLocation}"/>
+                                </StackLayout>
+                                <Label 
+                                    Text="{Binding TranslationText}" 
+                                    TextColor="{StaticResource SecondaryText}" 
+                                    FontSize="Medium" 
+                                    HorizontalTextAlignment="Start"
+                                    IsVisible="{Binding ShowTranslation}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<Grid Grid.Row="1">
+                <Grid IsVisible="{Binding ShowDownload}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" BorderRadius="0" BackgroundColor="{StaticResource Primary}" Image="ic_close_white_24dp" Command="{Binding CancelDownloadCommand}"/>
+                </Grid>
+                <Grid IsVisible="{Binding ShowPlayer}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" BorderRadius="0" BackgroundColor="{StaticResource Primary}" Image="ic_stop_white_24dp.png" Command="{Binding StopCommand}"/>
+                    <Button Grid.Column="1" BorderRadius="0" BackgroundColor="{StaticResource Primary}" Image="ic_skip_previous_white_24dp" Command="{Binding PreviousCommand}"/>
+                    <Label Grid.Column="2" BackgroundColor="{StaticResource Primary}" Text="{Binding CurrentAyahLabel}" TextColor="White" HeightRequest="40" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"  LineBreakMode="NoWrap"/>
+                    <Button Grid.Column="3" BorderRadius="0" BackgroundColor="{StaticResource Primary}" Image="ic_skip_next_white_24dp" Command="{Binding NextCommand}"/>
+                    <Button Grid.Column="4" BorderRadius="0" BackgroundColor="{StaticResource Primary}" Image="ic_settings_white_24dp" Command="{Binding AudioSettingsCommand}"/>
+                </Grid>
+            </Grid>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

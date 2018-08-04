@@ -8,20 +8,28 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MuslimSurvivalKit.View.Quran.Reader
+namespace MuslimSurvivalKit.View.Quran.Reader.SurahView
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuranSurahPage : ContentPage
     {
         int _surahId;
+        int _ayahId;
+        bool _jumpTo;
         QuranSurahViewModel _viewmodel;
-        public QuranSurahPage(int surahId, int ayahId = 1)
+        public QuranSurahPage(int surahId, int ayahId, bool jumpTo)
         {
             InitializeComponent();
 
             _surahId = surahId;
+            _ayahId = ayahId;
+            _jumpTo = jumpTo;
+            //SetViewModel();
+        }
 
-            _viewmodel = new QuranSurahViewModel(Navigation, _listView, surahId, ayahId);
+        private void SetViewModel()
+        {
+            _viewmodel = new QuranSurahViewModel(Navigation, _listView, _surahId, _ayahId, _jumpTo);
 
             BindingContext = _viewmodel;
         }
@@ -49,6 +57,13 @@ namespace MuslimSurvivalKit.View.Quran.Reader
                 await DisplayAlert(exc.Message, exc.ToString(), "OK");
             }
             //_listView.ScrollTo(jumpTo, ScrollToPosition.Start, true);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            SetViewModel();
         }
     }
 }

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MuslimSurvivalKit.Converter"
+             x:Class="MuslimSurvivalKit.View.Quran.Bookmarks.AllBookmarksPage">
+    <ContentPage.Resources>
+        <converters:BookmarkTypeToStringConverter x:Key="bookmarkTypeToString"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label 
+                    Text="Pick up where you left of" 
+                    Style="{StaticResource HeaderLabel}"/>
+                <StackLayout Padding="20,10,20,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1" 
+                                    Command="{Binding LastIdCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label 
+                                Text="{Binding LastBookmark.BookmarkIdHeader}" 
+                                TextColor="{StaticResource PrimaryText}"/>
+                            <Label 
+                                Text="{Binding LastBookmark.BookmarkIdDetail}" 
+                                TextColor="{StaticResource SecondaryText}"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    NumberOfTapsRequired="1" 
+                                    Command="{Binding LastPageCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Label 
+                                Text="{Binding LastBookmark.BookmarkPageHeader}" 
+                                TextColor="{StaticResource PrimaryText}"/>
+                            <Label 
+                                Text="{Binding LastBookmark.BookmarkPageDetail}" 
+                                TextColor="{StaticResource SecondaryText}"/>
+                        </StackLayout>
+                    </Grid>
+                    <Label 
+                        Text="{Binding LastBookmark.DateCreated}" 
+                        HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="1">
+                <Label 
+                    Text="Bookmarks"
+                    Style="{StaticResource HeaderLabel}"/>
+                <Grid>
+                    <Label 
+                        Text="{Binding BookmarksMessage}" 
+                        HorizontalTextAlignment="Center"/>
+                    <ListView 
+                        x:Name="bookmarksList" 
+                        ItemsSource="{Binding Bookmarks}" 
+                        ItemTapped="BookmarksList_ItemTapped"
+                        HasUnevenRows="True" 
+                        IsPullToRefreshEnabled="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem 
+                                            Text="Remove Bookmark" 
+                                            Clicked="RemoveBookmark_Clicked" 
+                                            CommandParameter="{Binding .}" 
+                                            IsDestructive="True"/>
+                                    </ViewCell.ContextActions>
+                                    <Grid Padding="20,10,20,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0">
+                                            <Label 
+                                                Text="{Binding Description}" 
+                                                TextColor="{StaticResource PrimaryText}"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label 
+                                                    Text="{Binding BookmarkType, Converter={StaticResource Key=bookmarkTypeToString}}" 
+                                                    TextColor="{StaticResource SecondaryText}"/>
+                                                <Label 
+                                                    Text="{Binding BookmarkDetail}" 
+                                                    TextColor="{StaticResource SecondaryText}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Label 
+                                            Grid.Column="1" 
+                                            Text="{Binding BookmarkDate}" 
+                                            TextColor="{StaticResource SecondaryText}" 
+                                            HorizontalTextAlignment="End" 
+                                            VerticalTextAlignment="Start"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

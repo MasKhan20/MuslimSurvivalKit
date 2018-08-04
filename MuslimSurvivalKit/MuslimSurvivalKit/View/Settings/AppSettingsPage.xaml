@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MuslimSurvivalKit.View.Settings.AppSettingsPage">
+    <ContentPage.Content>
+        <TableView 
+            Intent="Settings" 
+            HasUnevenRows="True">
+            <TableSection Title="App">
+                <SwitchCell Text="Recite Bismillah at Startup" On="{Binding StartUpAudio}"/>
+            </TableSection>
+            <TableSection Title="Quran">
+                <TextCell Text="Quran Settings" TextColor="Gray" Command="{Binding QuranSettingsCommand}"/>
+            </TableSection>
+            <TableSection Title="Downloads">
+                <TextCell Text="Required Files" Detail="Download the required files for quran reader" TextColor="Gray" Command="{Binding DownloadCompulsoryCommand}"/>
+                <TextCell Text="Audio Manager" Detail="Download custom Quran audio" TextColor="Gray" Command="{Binding DownloadAudioCommand}"/>
+            </TableSection>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

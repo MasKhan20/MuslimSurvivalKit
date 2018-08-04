@@ -25,6 +25,8 @@ namespace MuslimSurvivalKit.iOS
         {
             Rg.Plugins.Popup.Popup.Init();
 
+            Google.MobileAds.MobileAds.Configure("YOUR IOS APP ID HERE");
+
             global::Xamarin.Forms.Forms.Init();
 
             ImageCircleRenderer.Init();

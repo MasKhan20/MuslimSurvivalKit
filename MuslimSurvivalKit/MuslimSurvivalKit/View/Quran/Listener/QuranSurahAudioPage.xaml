@@ -151,9 +151,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" BorderRadius="1" Image="{Binding StopIcon}"/>
-                    <Button Grid.Column="1" BorderRadius="1" Image="{Binding PreviousIcon}"/>
+                    <Button Grid.Column="1" BorderRadius="1" Image="{Binding PreviousIcon}" Command="{Binding PreviousCommand}"/>
                     <Button Grid.Column="2" BorderRadius="1" Image="{Binding PlayPauseIcon}" Command="{Binding PlayPauseCommand}"/>
-                    <Button Grid.Column="3" BorderRadius="1" Image="{Binding NextIcon}"/>
+                    <Button Grid.Column="3" BorderRadius="1" Image="{Binding NextIcon}" Command="{Binding NextCommand}"/>
                     <Button Grid.Column="4" BorderRadius="1" Image="{Binding SettingIcon}"/>
                 </Grid>
             </Grid>

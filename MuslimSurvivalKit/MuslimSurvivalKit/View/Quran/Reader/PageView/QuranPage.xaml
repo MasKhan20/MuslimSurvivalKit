@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="MuslimSurvivalKit.View.Quran.Reader.PageView.QuranPage" 
+             NavigationPage.HasNavigationBar="{Binding ShowBar}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding BookmarkedIcon}" Command="{Binding BookmarkCommand}" Order="Primary"/>
+        <ToolbarItem Icon="ic_file_download_white_36dp.png" Command="{Binding DownloadPageCommand}" Order="Primary"/>
+        <ToolbarItem Text="Refresh" Command="{Binding RefreshCommand}" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+                <Image 
+                    Source="{Binding PageSource}" 
+                    HorizontalOptions="Fill" 
+                    VerticalOptions="Fill" 
+                    Aspect="AspectFit" 
+                    BackgroundColor="{Binding BgColor}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            NumberOfTapsRequired="1" 
+                            Command="{Binding ToggleVisibilityCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </ScrollView>
+            <!--Nooooooo!!!!!, creating 114 ad banners every time (overload) - oh well ;) -->
+            <!--<views:AdMobView Grid.Row="1" AdUnitId="ca-app-pub-7755924906506170/6172086567"/>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

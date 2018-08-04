@@ -15,17 +15,31 @@
 
             <OnPlatform x:TypeArguments="x:String" x:Key="ArabicFont">
                 <On Platform="Android" Value="arabtype.ttf#Arabic Typesetting"/>
-                <On Platform="UWP" Value="/Assets/arabtype.ttf#Arabic Typesetting"/>
-                <On Platform="iOS" Value="arabtype"/>
+                <!--<On Platform="UWP" Value="/Assets/arabtype.ttf#Arabic Typesetting"/>
+                <On Platform="iOS" Value="arabtype"/>-->
             </OnPlatform>
 
-            <Style TargetType="Button">
+            <!--<Style TargetType="Button">
                 <Setter 
                     Property="BackgroundColor" 
                     Value="{StaticResource PrimaryDark}"/>
-                <!--Value="#009688"/>-->
-            </Style>
+                Value="#009688"/>
+            </Style>-->
 
+            <Style
+                x:Key="HeaderLabel" 
+                TargetType="Label">
+                <Setter 
+                    Property="Margin"
+                    Value="15,10,10,10"/>
+                <Setter 
+                    Property="TextColor"
+                    Value="{StaticResource Primary}"/>
+                <Setter 
+                    Property="FontSize" 
+                    Value="Medium"/>
+            </Style>
+            
             <Style TargetType="Grid">
                 <Setter 
                     Property="Padding"

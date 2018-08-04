@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MuslimSurvivalKit.View.Settings.QuranReaderSettingsPage"
+             xmlns:behaviors="clr-namespace:MuslimSurvivalKit.Behaviors"
+             Title="Quran Settings">
+    <ContentPage.Content>
+        <TableView 
+            Intent="Settings" 
+            HasUnevenRows="True">
+            <TableSection Title="Arabic">
+                <SwitchCell Text="Show Arabic Text" On="{Binding ShowArabic}"/>
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                            <Label Text="Arabic Text Size" VerticalOptions="Center"/>
+                            <Entry Text="{Binding ArTextSize}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End">
+                                <Entry.Behaviors>
+                                    <behaviors:NumericEntryBehavior/>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+                <SwitchCell Text="Show Surah/Ayah Location" On="{Binding ShowLocation}"/>
+            </TableSection>
+            <TableSection Title="Translation">
+                <SwitchCell x:Name="showT" Text="ShowTranslation" On="{Binding ShowTranslation}"/>
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Orientation="Horizontal" Margin="15,10,10,10">
+                            <Label Text="Translation Id" VerticalOptions="Center"/>
+                            <Picker Title="Select" ItemsSource="{Binding TranslationIds}" SelectedItem="{Binding SelectedTranslation}" HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+            </TableSection>
+            <!--<TableSection Title="Audio">
+                <SwitchCell Text="Auto-select first ayah" On="{Binding AutoSelectFirst}"/>
+            </TableSection>-->
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

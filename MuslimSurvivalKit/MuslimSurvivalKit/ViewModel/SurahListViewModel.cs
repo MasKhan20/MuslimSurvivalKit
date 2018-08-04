@@ -32,9 +32,13 @@ namespace MuslimSurvivalKit.ViewModel
             }
         }
         #endregion
-
-        public SurahListViewModel()
+        
+        //bool _isRoot;
+        //INavigation Navigation;
+        public SurahListViewModel()//(INavigation navigation, bool isRoot)
         {
+            //_isRoot = isRoot;
+            //Navigation = navigation;
             Load();
         }
 

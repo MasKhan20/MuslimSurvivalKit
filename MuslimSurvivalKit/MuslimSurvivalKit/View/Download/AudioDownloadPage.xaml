@@ -9,8 +9,8 @@
                     Text="{Binding StatusText}" 
                     TextColor="{StaticResource PrimaryText}" 
                     HorizontalTextAlignment="Center" />
-                
-                
+
+                <Button Text="Download Mishary Al Afasy Ayahs" Command="{Binding DownloadAyahsCommand}"/>
                 <Button Text="Download Mishary Al Afasy All" Command="{Binding DownloadAllCommand}"/>
             </StackLayout>
         </ScrollView>
