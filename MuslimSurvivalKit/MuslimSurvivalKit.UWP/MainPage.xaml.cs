@@ -21,6 +21,8 @@ namespace MuslimSurvivalKit.UWP
         {
             this.InitializeComponent();
 
+            Syncfusion.SfPicker.XForms.UWP.SfPickerRenderer.Init();
+
             LoadApplication(new MuslimSurvivalKit.App());
         }
     }

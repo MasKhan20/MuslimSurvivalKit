@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MuslimSurvivalKit.View.Root.RootPage"
+             xmlns:admob="clr-namespace:MuslimSurvivalKit.View.Ads">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_settings_white_36dp.png" Order="Primary" Command="{Binding SettingsCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TableView 
+                Intent="Menu">
+                <TableSection Title="Muslim Survival Kit">
+                    <ImageCell 
+                        ImageSource="quran.png" 
+                        Text="Al Quran" 
+                        Detail="Recite Quran alongside your favourite reciters." 
+                        Command="{Binding QuranPageCommand}"/>
+                    <ImageCell 
+                        
+                        Text="Tajweed Quran" 
+                        Detail="A Quran Pdf with Tajweed highlighting" 
+                        Command="{Binding QuranPdfCommand}"/>
+                    <ImageCell 
+                        
+                        Text="Salah Times" 
+                        Detail="View Salah times for your current location" 
+                        Command="{Binding SalahTimesCommand}"/>
+                </TableSection>
+            </TableView>
+            <admob:AdMobBannerView Grid.Row="1" AdUnitId="ca-app-pub-4025243320631804/8161981113"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

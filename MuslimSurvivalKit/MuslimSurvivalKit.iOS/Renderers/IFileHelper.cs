@@ -27,6 +27,21 @@ namespace MuslimSurvivalKit.iOS.Renderers
 
             return Path.Combine(libFolder, databasename);
         }
+
+        public string GetDownloadDirectory()
+        {
+            return string.Empty;
+        }
+
+        public double GetDuration(string filePath)
+        {
+            return 0;
+        }
+
+        public string TajweedPdfPath()
+        {
+            
+        }
     }
 }
    

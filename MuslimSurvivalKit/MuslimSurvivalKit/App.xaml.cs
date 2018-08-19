@@ -26,8 +26,13 @@ namespace MuslimSurvivalKit
         public static MobileServiceClient MobileService 
             = new MobileServiceClient("https://muslimsurvivalkit.azurewebsites.net");
 
+        public static string TajweedPdfPath = DependencyService.Get<IFileHelper>().TajweedPdfPath();
+        public static string TajweedPdfDownloadLink = "https://muslimsurvivalkitstorage.file.core.windows.net/quranaudio/pdf/TajweedQuran.pdf?sv=2017-11-09&ss=bf&srt=sco&sp=r&se=2020-12-31T23:06:35Z&st=2018-07-31T14:06:35Z&spr=https&sig=J8NPhZ89HekXLUH7F7ugnUiir6RZHHq9gKguez0fVAQ%3D";
+
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTU1MTRAMzEzNjJlMzIyZTMwZ0RiTHp2Ni9xK0ZzTGgvMG5xeEFlMEtmak9nK3Q4cWpmZlJORUo5TXBJVT0=");
+
             InitializeComponent();
 
             CurrentPlatform.Init();
@@ -72,7 +77,7 @@ namespace MuslimSurvivalKit
         #region App Constants
         ///Icons
         public static string SettingsIcon = "ic_settings_white_36dp.png";
-        public static string DownloadWhiteIcon = "ic_file_download_white_236p.png";
+        public static string DownloadWhiteIcon = "ic_file_download_white_36dp.png";
         public static string BookmarkFilledBlackIcon = "ic_bookmark_black_36dp.png";
         public static string BookmarkHollowBlackIcon = "ic_bookmark_border_black_36dp.png";
         public static string BookmarkFilledWhiteIcon = "ic_bookmark_white_36dp.png";

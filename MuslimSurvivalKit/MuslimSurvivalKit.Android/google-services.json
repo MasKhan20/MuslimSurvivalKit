@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "774070766983",
+    "firebase_url": "https://muslim-survival-kit-a32d4.firebaseio.com",
+    "project_id": "muslim-survival-kit-a32d4",
+    "storage_bucket": "muslim-survival-kit-a32d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774070766983:android:c476878cc6df7270",
+        "android_client_info": {
+          "package_name": "com.muhammadkhan.MuslimSurvialKit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774070766983-r30r44nqd5aprkrfh3r2fk4thv05vi9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlw0ZXdmyfJnaJhqf1a5BGXS7Q9u1rjvw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-4025243320631804~3716319700"
+    }
+  ],
+  "configuration_version": "1"
+}

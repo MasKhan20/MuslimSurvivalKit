@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:sfpdf="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms" 
+             x:Class="MuslimSurvivalKit.View.Quran.Reader.PdfView.QuranPdfPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_file_download_white_36dp.png" Order="Primary" Clicked="ToolbarDownload_Clicked"/>
+        <ToolbarItem Text="Refresh" Order="Secondary" Command="{Binding RefreshCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <sfpdf:SfPdfViewer 
+                Grid.Row="0" 
+                x:Name="pdfViewer" 
+                InputFileStream="{Binding PdfFileStream}" 
+                IsTextSearchEnabled="False"/>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource Primary}" RowSpacing="0" ColumnSpacing="0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Orientation="Horizontal" Margin="10,0,10,0">
+                    <Button 
+                        Image="ic_arrow_back_white_24dp.png" 
+                        BackgroundColor="{StaticResource Primary}" 
+                        HeightRequest="50" 
+                        WidthRequest="60" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center" 
+                        Command="{Binding GoToPreviousPageCommand, Source={x:Reference Name=pdfViewer}}"/>
+                    <Button 
+                        Image="ic_arrow_forward_white_24dp.png" 
+                        BackgroundColor="{StaticResource Primary}" 
+                        HeightRequest="50" 
+                        WidthRequest="60" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center" 
+                        Command="{Binding GoToNextPageCommand, Source={x:Reference Name=pdfViewer}}"/>
+                </StackLayout>
+                <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="10,0,10,0">
+                    <Entry 
+                        Text="{Binding PageNumber, Source={x:Reference Name=pdfViewer}}" 
+                        TextColor="White" 
+                        WidthRequest="45" 
+                        FontSize="18" 
+                        Keyboard="Numeric" 
+                        VerticalOptions="Center" 
+                        HorizontalTextAlignment="Center"/>
+                    <Label 
+                        Text="/" 
+                        TextColor="White" 
+                        FontSize="18" 
+                        VerticalOptions="Center"/>
+                    <Label 
+                        Text="{Binding PageCount, Source={x:Reference Name=pdfViewer}}" 
+                        TextColor="White" 
+                        FontSize="18" 
+                        VerticalOptions="Center" 
+                        HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

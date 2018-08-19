@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MuslimSurvivalKit.View.Download.DownloadFilePopup"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation 
+            DurationIn="400" 
+            DurationOut="200" 
+            HasBackgroundAnimation="True" 
+            PositionIn="Bottom"
+            PositionOut="Center"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Content>
+        <StackLayout Padding="30">
+            <StackLayout 
+                BackgroundColor="White"
+                HorizontalOptions="CenterAndExpand" 
+                VerticalOptions="CenterAndExpand">
+                <StackLayout Margin="20,20,20,0">
+                    <Label 
+                        Text="{Binding StatusLabel}" 
+                        TextColor="{StaticResource PrimaryText}" 
+                        HorizontalTextAlignment="Start" 
+                        FontSize="Medium"/>
+                    <ProgressBar 
+                        FlowDirection="LeftToRight" 
+                        Progress="{Binding ProgressValue}" 
+                        ProgressColor="{StaticResource PrimaryDark}" 
+                        HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <Button 
+                    Text="{Binding ButtonText}" 
+                    TextColor="{StaticResource PrimaryText}" 
+                    BackgroundColor="White" 
+                    HorizontalOptions="End" 
+                    Opacity="0.5" 
+                    Command="{Binding CancelDownloadCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             x:Class="MuslimSurvivalKit.View.Settings.SalahTimesSettingsPage">
+    <ContentPage.Content>
+        <TableView Intent="Settings" HasUnevenRows="True">
+            <TableSection Title="Location Services">
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Margin="15,10,10,10">
+                            <Label Text="{Binding DesiredAccuracyText}" VerticalOptions="Center"/>
+                            <Slider Minimum="0" Maximum="500" Value="{Binding DesiredAccuracy, Mode=TwoWay}" MinimumTrackColor="{StaticResource PrimaryDark}" MaximumTrackColor="{StaticResource Accent}" HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+                <!--<SwitchCell Text="{Binding UseCurrentOrCustomLocation}" On="{Binding LocationType}"/>
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Margin="15,10,10,10">
+                            <Label Text="Custom Location" VerticalOptions="Center"/>
+                            <Picker
+                                Title="Country" 
+                                ItemsSource="{Binding Countries}" 
+                                SelectedItem="{Binding SelectedCountry}"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>-->
+            </TableSection>
+            <TableSection Title="Salah Time Calculator">
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Margin="15,10,10,10">
+                            <Picker 
+                                Title="Calculation Method" 
+                                ItemsSource="{Binding CalcMethods}" 
+                                SelectedItem="{Binding CalcMethod, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Margin="15,10,10,10">
+                            <Picker 
+                                Title="Asr Juristiction Method" 
+                                ItemsSource="{Binding AsrJuristicMethods}" 
+                                SelectedItem="{Binding AsrJuristicMethod, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Margin="15,10,10,10">
+                            <Picker 
+                                Title="High Latitude Adjustment Method" 
+                                ItemsSource="{Binding LatitudeAdjustmentMethods}" 
+                                SelectedItem="{Binding LatitudeAdjustmentMethod, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+                <ViewCell>
+                    <ContentView>
+                        <StackLayout Margin="15,10,10,10">
+                            <!--<Button Text="{Binding TimeZone}" Command="{Binding UtcPickerCommand}" VerticalOptions="Center"/>-->
+                            <!--<syncfusion:SfPicker 
+                                PickerMode="Dialog" 
+                                IsOpen="{Binding OpenUtcPicker}" 
+                                HeaderText="Select Time Zone" 
+                                ItemsSource="{Binding TimeZones}" 
+                                SelectedItem="{Binding TimeZone, Mode=TwoWay}"
+                                SelectedItemTextColor="{StaticResource Primary}" 
+                                UnSelectedItemTextColor="{StaticResource SecondaryText}"/>-->
+                            <Picker 
+                                Title="Time Zone" 
+                                ItemsSource="{Binding TimeZones}" 
+                                SelectedItem="{Binding TimeZone, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </ContentView>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:converters="clr-namespace:MuslimSurvivalKit.Converter" 
+             x:Class="MuslimSurvivalKit.View.Salah.Times.SalahTimesPage">
+    <ContentPage.Resources>
+        <converters:TimeSpanToStringConverter x:Key="timeToString"/>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_settings_white_36dp.png" Command="{Binding SalahSettingsCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--<ListView 
+                    ItemsSource="{Binding SalahTimes}" 
+                    SelectedItem="{Binding SelectedSalah, Mode=TwoWay}">
+                    
+                </ListView>-->
+                <StackLayout Padding="20,0,20,10">
+                    <Label 
+                        Text="Fajr" 
+                        TextColor="{StaticResource Primary}"/>
+                    <Label 
+                        Text="{Binding SalahTimes.Fajr, Converter={StaticResource timeToString}}"/>
+                </StackLayout>
+                <StackLayout Padding="20,0,20,10">
+                    <Label 
+                        Text="Sunrise" 
+                        TextColor="{StaticResource Primary}"/>
+                    <Label 
+                        Text="{Binding SalahTimes.Sunrise, Converter={StaticResource timeToString}}"/>
+                </StackLayout>
+                <StackLayout Padding="20,0,20,10">
+                    <Label 
+                        Text="Dhuhr" 
+                        TextColor="{StaticResource Primary}"/>
+                    <Label 
+                        Text="{Binding SalahTimes.Dhuhr, Converter={StaticResource timeToString}}"/>
+                </StackLayout>
+                <StackLayout Padding="20,0,20,10">
+                    <Label 
+                        Text="Asr" 
+                        TextColor="{StaticResource Primary}"/>
+                    <Label 
+                        Text="{Binding SalahTimes.Asr, Converter={StaticResource timeToString}}"/>
+                </StackLayout>
+                <StackLayout Padding="20,0,20,10">
+                    <Label 
+                        Text="Maghrib" 
+                        TextColor="{StaticResource Primary}"/>
+                    <Label 
+                        Text="{Binding SalahTimes.Maghrib, Converter={StaticResource timeToString}}"/>
+                </StackLayout>
+                <StackLayout Padding="20,0,20,10">
+                    <Label 
+                        Text="Isha" 
+                        TextColor="{StaticResource Primary}"/>
+                    <Label 
+                        Text="{Binding SalahTimes.Isha, Converter={StaticResource timeToString}}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

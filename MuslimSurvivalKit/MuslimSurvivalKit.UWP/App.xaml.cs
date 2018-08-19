@@ -1,8 +1,10 @@
 ﻿using ImageCircle.Forms.Plugin.UWP;
+using Syncfusion.SfPicker.XForms.UWP;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -55,7 +57,10 @@ namespace MuslimSurvivalKit.UWP
 
                 Rg.Plugins.Popup.Popup.Init();
 
-                Xamarin.Forms.Forms.Init(e);
+                List<Assembly> assembliesToInclude = new List<Assembly>();
+                assembliesToInclude.Add(typeof(SfPickerRenderer).GetTypeInfo().Assembly);
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

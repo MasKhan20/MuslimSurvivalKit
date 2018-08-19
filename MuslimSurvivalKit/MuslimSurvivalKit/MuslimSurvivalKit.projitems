@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -20,36 +19,46 @@
     <Compile Include="$(MSBuildThisFileDirectory)Behaviors\SearchTextChangedBehavior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ObservableMediaQueue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BookmarkTypeToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\Converters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\IntToIdConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\SecondToTimeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\TimeSpanToStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\IMethodHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\MuslimKitDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\AyahArOriginal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\AyahEnSahih.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Bookmark.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\BookmarkType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Reciter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Reciters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Salah\SalahTime.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Surah.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Location.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AllBookmarksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AppSettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AudioDownloadViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DownloadFileViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\DownloadPopupViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranPdfViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranReaderSettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranSurahAudioViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\QuranSurahViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RootViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SalahTimesSettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SalahTimesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SurahListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\Ads\AdMobBannerView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\Download\AudioDownloadPage.xaml.cs">
       <DependentUpon>AudioDownloadPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Download\DownloadFilePopup.xaml.cs">
+      <DependentUpon>DownloadFilePopup.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Download\DownloadPopup.xaml.cs">
@@ -69,6 +78,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Reader\PageView\QuranPages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Reader\PdfView\QuranPdfPage.xaml.cs">
+      <DependentUpon>QuranPdfPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Reader\SurahView\QuranReaderMasterPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\Quran\Reader\SurahView\QuranSurahPage.xaml.cs">
       <DependentUpon>QuranSurahPage.xaml</DependentUpon>
@@ -78,13 +91,25 @@
       <DependentUpon>SurahListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\Root\RootPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Root\RootPage.xaml.cs">
+      <DependentUpon>RootPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Root\RootQuranPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Salah\Times\SalahTimes.xaml.cs">
+      <DependentUpon>SalahTimes.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Settings\AppSettingsPage.xaml.cs">
       <DependentUpon>AppSettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Settings\QuranReaderSettingsPage.xaml.cs">
       <DependentUpon>QuranReaderSettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\Settings\SalahTimesSettingsPage.xaml.cs">
+      <DependentUpon>SalahTimesSettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -141,6 +166,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Download\DownloadPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Salah\Times\SalahTimes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Root\RootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Settings\SalahTimesSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Quran\Reader\PdfView\QuranPdfPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Download\DownloadFilePopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

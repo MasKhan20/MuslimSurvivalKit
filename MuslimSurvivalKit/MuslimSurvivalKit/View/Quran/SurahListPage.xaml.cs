@@ -26,10 +26,10 @@ namespace MuslimSurvivalKit.View.Quran
 
             if (isRoot)
             {
-                var ad = new AdMobBannerView("ca-app-pub-4025243320631804/8161981113");
-                    //"ca-app-pub-3940256099942544/6300978111"
-                
-                grid.Children.Add(ad, 0, 1); 
+                //// My Ads: "ca-app-pub-4025243320631804/8161981113"
+                //var ad = new AdMobBannerView("ca-app-pub-3940256099942544/6300978111");
+                //
+                //grid.Children.Add(ad, 0, 1); 
             }
 
             //Title = "Al Quran - Surahs";

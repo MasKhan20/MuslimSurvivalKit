@@ -11,9 +11,9 @@ using Xamarin.Forms;
 
 namespace MuslimSurvivalKit.View.Root
 {
-    public class RootPage : TabbedPage
+    public class RootQuranPage : TabbedPage
     {
-        public RootPage()
+        public RootQuranPage()
         {
             ToolbarItem pageType = new ToolbarItem()
             {
@@ -56,14 +56,14 @@ namespace MuslimSurvivalKit.View.Root
         {
             base.OnCurrentPageChanged();
 
-            Title = CurrentPage?.Title ?? App.AppName;
+            Title = CurrentPage?.Title ?? "Al Quran";
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            Title = App.AppName;
+            Title = "Al Quran";
 
             CheckIfDownloaded();
         }

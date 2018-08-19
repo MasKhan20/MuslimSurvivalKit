@@ -15,6 +15,7 @@ namespace MuslimSurvivalKit.ViewModel
     {
         #region Binding Commands
         public ICommand QuranSettingsCommand => new Command(QuranSettings_Command);
+        public ICommand SalahSettingsCommand => new Command(SalahSettings_Command);
         public ICommand DownloadCompulsoryCommand => new Command(DownloadCompulsory_Command);
         public ICommand DownloadAudioCommand => new Command(DownloadAudio_Command);
         #endregion
@@ -63,6 +64,21 @@ namespace MuslimSurvivalKit.ViewModel
             }
 
             await Navigation.PushAsync(new QuranReaderSettingsPage());
+
+            isPushing = false;
+        }
+
+        private async void SalahSettings_Command()
+        {
+            lock (this)
+            {
+                if (isPushing)
+                    return;
+                else
+                    isPushing = true;
+            }
+
+            await Navigation.PushAsync(new SalahTimesSettingsPage());
 
             isPushing = false;
         }

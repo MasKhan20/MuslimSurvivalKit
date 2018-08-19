@@ -9,5 +9,6 @@ namespace MuslimSurvivalKit.Data
         string GetDatabasePath(string databaseName);
         string GetDownloadDirectory();
         double GetDuration(string filePath);
+        string TajweedPdfPath();
     }
 }

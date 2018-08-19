@@ -12,6 +12,9 @@
             <TableSection Title="Quran">
                 <TextCell Text="Quran Settings" TextColor="Gray" Command="{Binding QuranSettingsCommand}"/>
             </TableSection>
+            <TableSection Title="Salah">
+                <TextCell Text="Salah Settings" TextColor="Gray" Command="{Binding SalahSettingsCommand}"/>
+            </TableSection>
             <TableSection Title="Downloads">
                 <TextCell Text="Required Files" Detail="Download the required files for quran reader" TextColor="Gray" Command="{Binding DownloadCompulsoryCommand}"/>
                 <TextCell Text="Audio Manager" Detail="Download custom Quran audio" TextColor="Gray" Command="{Binding DownloadAudioCommand}"/>

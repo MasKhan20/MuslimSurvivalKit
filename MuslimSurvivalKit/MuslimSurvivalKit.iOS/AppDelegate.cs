@@ -29,10 +29,13 @@ namespace MuslimSurvivalKit.iOS
 
             global::Xamarin.Forms.Forms.Init();
 
+            Syncfusion.SfPicker.XForms.iOS.SfPickerRenderer.Init();
             ImageCircleRenderer.Init();
             string dbPath = Renderers.FileAccessHelper.GetLocalFilePath(App.DatabaseFile);
 
             LoadApplication(new App());
+
+            new Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer();
 
             return base.FinishedLaunching(app, options);
         }

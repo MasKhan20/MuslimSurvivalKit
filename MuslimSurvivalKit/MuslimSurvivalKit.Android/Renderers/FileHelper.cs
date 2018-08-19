@@ -48,5 +48,14 @@ namespace MuslimSurvivalKit.Droid.Renderers
 
             return hasData ? duration / 1000 : 0.0;
         }
+
+        public string TajweedPdfPath()
+        {
+            string path = Path.Combine(GetDownloadDirectory(), "Pdf");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            return Path.Combine(path, "TajweedQuran.pdf");
+        }
     }
 }
