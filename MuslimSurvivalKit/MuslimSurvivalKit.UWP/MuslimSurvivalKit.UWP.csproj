@@ -159,6 +159,9 @@
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager">
       <Version>2.0.3</Version>
     </PackageReference>
+    <PackageReference Include="PrayerTimes">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.158-pre</Version>
     </PackageReference>
