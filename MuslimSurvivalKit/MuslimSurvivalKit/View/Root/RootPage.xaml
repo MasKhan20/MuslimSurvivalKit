@@ -27,12 +27,17 @@
                         Command="{Binding QuranPdfCommand}"/>
                     <ImageCell 
                         
+                        Text="Recitation"
+                        Detail="Listen to your favourite reciters" 
+                        Command="{Binding QuranAudioCommand}"/>
+                    <ImageCell 
+                        
                         Text="Salah Times" 
                         Detail="View Salah times for your current location" 
                         Command="{Binding SalahTimesCommand}"/>
                 </TableSection>
             </TableView>
-            <admob:AdMobBannerView Grid.Row="1" AdUnitId="ca-app-pub-4025243320631804/8161981113"/>
+            <!--<admob:AdMobBannerView Grid.Row="1" AdUnitId="ca-app-pub-4025243320631804/8161981113"/>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -123,6 +123,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\AdMobBannerViewRenderer.cs" />
     <Compile Include="Renderers\FileAccessHelper.cs" />

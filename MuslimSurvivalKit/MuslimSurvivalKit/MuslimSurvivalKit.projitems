@@ -23,10 +23,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\IntToIdConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\SecondToTimeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\TimeSpanToStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\AudioManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\IAudioManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\IMethodHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\MuslimKitDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Events\DurationChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\AyahArOriginal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\AyahEnSahih.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Bookmark.cs" />
